@@ -89,7 +89,7 @@ namespace Cosmosrace
 
 
     {
-        static int counter = 180; static int counter2 = 5; static int counter3 = 15; static int counter4 = 50;
+        static int counter = 0; static int counter2 = 0; static int counter3 = 15; static int counter4 = 0;static int yyy = 0; static int yyy2=0;
 
         public static void mainLoop()
         {
@@ -113,7 +113,47 @@ namespace Cosmosrace
             graf.canvas.DrawLine(ppp, new Sys.Graphics.Point(graf.x, 0), new Sys.Graphics.Point(graf.x + 512, 799));
             graf.canvas.DrawLine(ppp, new Sys.Graphics.Point(graf.x, 797), new Sys.Graphics.Point(graf.x+512 , 798));
             graf.canvas.DrawLine(ppp, new Sys.Graphics.Point(graf.x - 512, 797), new Sys.Graphics.Point(graf.x , 798));
-            for(int yy=0;yy<760;yy=yy+25) graf.canvas.DrawLine(ppp, new Sys.Graphics.Point(graf.x, yy+counter3), new Sys.Graphics.Point(graf.x, yy+15+counter3));
+            if (counter > 450 && counter < 690) 
+            {
+                if (counter4 == 0 && graf.x > 60) Console.Beep();
+                if (counter4 == 1 && graf.x < 900) Console.Beep();
+
+            }
+            if (counter < 650)
+            {
+                if (counter4 == 0)
+                {
+                    graf.canvas.DrawRectangle(ppp, new Sys.Graphics.Point(graf.x - counter / 6, counter), counter / 6, counter / 6);
+                }
+                else
+                {
+                    graf.canvas.DrawRectangle(ppp, new Sys.Graphics.Point(graf.x + counter / 6, counter), counter / 6,counter/6);
+
+                }
+
+            }
+            else 
+            {
+                if (counter > 1000) 
+                {
+                    if (counter4 == 0)
+                    {
+                        counter = 0;
+                        counter4 = 1;
+
+                    }
+                    else 
+                    {
+                        counter = 0;
+                        counter4 = 0;
+                    }
+                
+                }
+            
+            
+            
+            }
+            for (int yy=0;yy<760;yy=yy+25) graf.canvas.DrawLine(ppp, new Sys.Graphics.Point(graf.x, yy+counter3), new Sys.Graphics.Point(graf.x, yy+15+counter3));
             if (counter3 == 15) 
             {
                 counter3 = 0;
@@ -125,6 +165,8 @@ namespace Cosmosrace
                 counter3 = 15;
 
             }
+            counter = counter + 1;
+            
             graf.displays();
         }
 
